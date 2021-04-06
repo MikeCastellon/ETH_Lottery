@@ -58,5 +58,28 @@ describe('Lottery Contract', () =>{
       assert.strictEqual(accounts[2], players[2])
       assert.strictEqual(3, players.length)
     })
+
+    it('requires min ammount of ether to enter', async() =>{
+      try{
+        await lottery.methods.enter().send({
+          from: accounts[0],
+          value: 0
+        })
+        assert(false)
+      } catch(err){
+        assert(err)
+      }
+    })
+
+    it('only manager can pickWinner', async() => {
+      try{
+        await lottery.methods.pickWinner().send({
+          accounts: account[1]
+        })
+        assert(false)
+      }catch(err){
+        assert(err)
+      }
+    }) 
 } )
     
