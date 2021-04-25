@@ -3,7 +3,7 @@ const Web3 = require('web3')
 const { interface, bytecode } = require('./compile')
 
 const provider = new HdWalletProvider(
-    'wave cover mystery leisure educate guide humor purse dutch wet drum helmet',
+    REACT_APP_SEED,
     'https://rinkeby.infura.io/v3/1a49ae3796094606964d25e3d55290fb'
     )
 
@@ -19,6 +19,7 @@ const deploy = async () => {
     .send({ gas: 1000000, from: accounts[0]})
 
     console.log('Contract deployed to:', result.options.address)
+    console.log(interface)
 }
 
 deploy()
